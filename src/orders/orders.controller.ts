@@ -8,6 +8,7 @@ import {
   Query,
   Body,
 } from '@nestjs/common';
+import { CreateOrderDto } from './dto/create-order.dto';
 
 @Controller('orders')
 export class OrdersController {
@@ -22,8 +23,8 @@ export class OrdersController {
   }
 
   @Post()
-  createOrder(@Body() formData) {
-    return { sucess: 'created!' };
+  createOrder(@Body() formData: CreateOrderDto) {
+    return { name: formData.name };
   }
 
   @Put(':id')
