@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Query,
+  Body,
 } from '@nestjs/common';
 
 @Controller('orders')
@@ -21,7 +22,7 @@ export class OrdersController {
   }
 
   @Post()
-  createOrder() {
+  createOrder(@Body() formData) {
     return { sucess: 'created!' };
   }
 
