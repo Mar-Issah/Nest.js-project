@@ -1,8 +1,8 @@
 {
   "name": "marsiya-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "This is a nestjs sample project",
+  "author": "Marsiya Issah",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
