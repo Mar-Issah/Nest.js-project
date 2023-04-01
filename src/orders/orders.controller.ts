@@ -9,6 +9,7 @@ import {
   Body,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { UpdateOrderDto } from './dto/update-order.dto';
 
 @Controller('orders')
 export class OrdersController {
@@ -28,7 +29,7 @@ export class OrdersController {
   }
 
   @Put(':id')
-  upadteOrder(@Param('id') id: number) {
+  upadteOrder(@Param('id') id: number, @Body() updateOrder: UpdateOrderDto) {
     return { sucess: 'updated!' };
   }
   @Delete(':id')
