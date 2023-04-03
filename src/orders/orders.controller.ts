@@ -10,12 +10,15 @@ import {
   NotFoundException,
   ParseIntPipe,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { SiyaOrderGuard } from 'src/siya-order/siya-order.guard';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrdersService } from './orders.service';
 
 @Controller('orders')
+//@UseGuards(SiyaOrderGuard)	//if we want to use it generally on all our routes then call it here
 export class OrdersController {
   //automatially instantiates a sericise which is used in our CRUD functions below
   constructor(private readonly orderService: OrdersService) {}
@@ -38,6 +41,7 @@ export class OrdersController {
   }
 
   @Post()
+  @UseGuards(SiyaOrderGuard) //to use it on the post route
   createOrder(@Body(new ValidationPipe()) formData: CreateOrderDto) {
     return this.orderService.createOrder(formData);
   }
