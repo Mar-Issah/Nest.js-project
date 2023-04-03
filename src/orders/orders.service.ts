@@ -20,7 +20,9 @@ export class OrdersService {
   getOrder(id: number) {
     const order = this.orders.find((order) => order.id === id);
 
-    if (!order) throw new Error('Order not found');
+    if (!order) {
+      throw new Error(`Order with ID ${id} not found`);
+    }
 
     return order;
   }

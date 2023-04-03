@@ -23,9 +23,10 @@ export class OrdersController {
     return this.orderService.getOrders(name);
   }
 
+  //cast ALL the id param to a number using the unary plus (+) operator.
   @Get(':id')
   getOrder(@Param('id') id: number) {
-    return this.orderService.getOrder(id);
+    return this.orderService.getOrder(+id);
   }
 
   @Post()
@@ -35,10 +36,10 @@ export class OrdersController {
 
   @Put(':id')
   upadteOrder(@Param('id') id: number, @Body() updateOrder: UpdateOrderDto) {
-    return this.orderService.updateOrder(id, updateOrder);
+    return this.orderService.updateOrder(+id, updateOrder);
   }
   @Delete(':id')
   deleteOrder(@Param('id') id: number) {
-    return this.orderService.removeOrder(id);
+    return this.orderService.removeOrder(+id);
   }
 }
