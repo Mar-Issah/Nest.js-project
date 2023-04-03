@@ -43,4 +43,11 @@ export class OrdersService {
       return this.getOrder(id);
     });
   }
+
+  removeOrder(id: number) {
+    const toBeRemoved = this.getOrder(id);
+
+    this.orders = this.orders.filter((order) => order.id === id);
+    return toBeRemoved;
+  }
 }
