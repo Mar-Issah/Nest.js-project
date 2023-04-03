@@ -10,12 +10,17 @@ import {
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { OrdersService } from './orders.service';
 
 @Controller('orders')
 export class OrdersController {
+  //automatially instantiates a sericise which is used in our CRUD functions below
+  constructor(private readonly orderService: OrdersService) {}
+
   @Get()
-  getOrders(@Query('type') type: string) {
-    return [{ type: `Type: ${type}` }];
+  getOrders(@Query('name') name: 'rice' | 'banku') {
+    // const service = new OrdersService();
+    return this.orderService.getOrders(name);
   }
 
   @Get(':id')
