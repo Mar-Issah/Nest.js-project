@@ -25,20 +25,20 @@ export class OrdersController {
 
   @Get(':id')
   getOrder(@Param('id') id: number) {
-    return { success: `I have ID: ${id}` };
+    return this.orderService.getOrder(id);
   }
 
   @Post()
   createOrder(@Body() formData: CreateOrderDto) {
-    return { name: formData.name };
+    return this.orderService.createOrder(formData);
   }
 
   @Put(':id')
   upadteOrder(@Param('id') id: number, @Body() updateOrder: UpdateOrderDto) {
-    return { sucess: 'updated!' };
+    return this.orderService.updateOrder(id, updateOrder);
   }
   @Delete(':id')
   deleteOrder(@Param('id') id: number) {
-    return { sucess: `deleted ID: ${id} !` };
+    return this.orderService.removeOrder(id);
   }
 }

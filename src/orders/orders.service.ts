@@ -45,6 +45,7 @@ export class OrdersService {
   }
 
   removeOrder(id: number) {
+    //query the order we rae looking for and return to the user after deleted
     const toBeRemoved = this.getOrder(id);
 
     this.orders = this.orders.filter((order) => order.id === id);
