@@ -9,6 +9,7 @@ import {
   Body,
   NotFoundException,
   ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -37,7 +38,7 @@ export class OrdersController {
   }
 
   @Post()
-  createOrder(@Body() formData: CreateOrderDto) {
+  createOrder(@Body(new ValidationPipe()) formData: CreateOrderDto) {
     return this.orderService.createOrder(formData);
   }
 
