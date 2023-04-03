@@ -7,6 +7,7 @@ import {
   Param,
   Query,
   Body,
+  NotFoundException,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -23,10 +24,15 @@ export class OrdersController {
     return this.orderService.getOrders(name);
   }
 
-  //cast ALL the id param to a number using the unary plus (+) operator.
+  //cast ALL the id param to a number using the unary plus (+) operator or there wil be errors.
   @Get(':id')
   getOrder(@Param('id') id: number) {
-    return this.orderService.getOrder(+id);
+    try {
+      return this.orderService.getOrder(+id);
+    } catch (error) {
+      //in built exception handling
+      throw new NotFoundException();
+    }
   }
 
   @Post()
