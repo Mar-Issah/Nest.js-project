@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { UpdateOrderDto } from './dto/update-order.dto';
 @Injectable()
 export class OrdersService {
   private orders = [
@@ -30,5 +31,16 @@ export class OrdersService {
     this.orders.push(newOrder);
 
     return newOrder;
+  }
+
+  //implement the update. map through the list, return the order which mathses the id and update that order object with the new one. use the getOrder method to return to the user the update order
+  updateOrder(id: number, updatedOrder: UpdateOrderDto) {
+    this.orders = this.orders.map((order) => {
+      if (order.id === id) {
+        return { ...order, ...updatedOrder };
+      }
+
+      return this.getOrder(id);
+    });
   }
 }
